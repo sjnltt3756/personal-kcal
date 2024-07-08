@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
 @Service
 @RequiredArgsConstructor
 public class KcalService {
-    private final Member member;
+
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 

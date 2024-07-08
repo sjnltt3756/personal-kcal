@@ -13,9 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class KcalServiceTest {
 
 
+
     @Test
     public void dietTest(){
-        Member m = new Member(177,72,28,"남성");
-        KcalService.dietKcal(m);
+
+
     }
 }

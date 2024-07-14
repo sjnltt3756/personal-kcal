@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public class MemberDTO {
 
+
     private String nickname;
     private String gender;
     private int height;

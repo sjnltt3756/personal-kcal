@@ -4,14 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-
+import lombok.NoArgsConstructor;
 
 
 @Getter
 @Entity
 @Builder
+@AllArgsConstructor
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,38 +26,13 @@ public class Member {
     private int weight;
     private int age;
 
-    // private 생성자
 
-    private Member(int height, int weight, int age, String gender, String nickname) {
-        this.height = height;
-        this.weight = weight;
-        this.age = age;
-        this.gender = gender;
-        this.nickname = nickname;
+    protected Member() {
     }
 
-    /**
-     * 정적 팩토리 메서드
-     */
-    public static Member specOfWoman(int height, int weight, int age, String nickname) {
-        return Member.builder()
-                .height(height)
-                .weight(weight)
-                .age(age)
-                .gender("여성")
-                .nickname(nickname)
-                .build();
-    }
 
-    public static Member specOfMan(int height, int weight, int age, String nickname) {
-        return Member.builder()
-                .height(height)
-                .weight(weight)
-                .age(age)
-                .gender("남성")
-                .nickname(nickname)
-                .build();
-    }
+
+
 
 
 }

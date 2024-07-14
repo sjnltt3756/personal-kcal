@@ -30,31 +30,17 @@ public class MemberService {
         return memberMapper.toLoginDto(member);
     }
 
-
-
     /**
-     * 여성 닉네임/스펙 입력
-     * @param height
-     * @param weight
-     * @param age
+     * 회원등록
+     * @param memberDTO
      * @return
      */
-    public Member createWoman(int height, int weight, int age,String nickname){
-        Member woman = Member.specOfWoman(height,weight,age,nickname);
-        return memberRepository.save(woman);
+    public MemberDTO registerMember(MemberDTO memberDTO) {
+        Member member = memberMapper.toMember(memberDTO);
+        Member savedMember = memberRepository.save(member);
+        return memberMapper.toMemberDTO(savedMember);
     }
 
-    /**
-     * 남성 닉네임/스펙 입력
-     * @param height
-     * @param weight
-     * @param age
-     * @return
-     */
-    public Member createMan(int height, int weight,int age,String nickname){
-        Member man = Member.specOfMan(height, weight, age,nickname);
-        return memberRepository.save(man);
-    }
 
     /**
      * 회원 정보 출력

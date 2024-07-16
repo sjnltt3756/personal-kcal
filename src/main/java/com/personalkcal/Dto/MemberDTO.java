@@ -1,8 +1,10 @@
 package com.personalkcal.Dto;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Data
 public class MemberDTO {
 
 
@@ -11,4 +13,6 @@ public class MemberDTO {
     private int height;
     private int weight;
     private int age;
+
+    private KcalDto kcalDto;
 }

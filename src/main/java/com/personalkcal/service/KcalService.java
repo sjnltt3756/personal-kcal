@@ -1,6 +1,7 @@
 package com.personalkcal.service;
 
 
+import com.personalkcal.domain.Kcal;
 import com.personalkcal.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,20 @@ public class KcalService {
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
+    public void calculateKcalForMember(Member member) {
+        Kcal kcal = new Kcal();
+        kcal.setDietKcal(dietKcal(member));
+        kcal.setMaintainKcal(maintainKcal(member));
+        kcal.setMassUpKcal(massUpKcal(member));
+        kcal.setBulkUpKcal(bulkUpKcal(member));
+        member.setKcal(kcal);
+    }
 
 
 
     // 체형별 탄단지 비율 계산
     // 다이어트
-    public double dietKcal(Member member){
+    private double dietKcal(Member member){
         if (member.getGender().equals("남성")){
 
             return basicKcal(member)-500;
@@ -28,16 +37,28 @@ public class KcalService {
         }
     }
     // 유지
-    public double maintainKcal(Member member){
+    private double maintainKcal(Member member){
+
         return basicKcal(member);
     }
     // 린매스업
-    public double massUpKcal(Member member){
-        return basicKcal(member)+200;
+    private double massUpKcal(Member member){
+        if (member.getGender().equals("남성")){
+
+            return basicKcal(member)+200;
+        }else{
+            return basicKcal(member)+100;
+        }
+
     }
     // 벌크업
-    public double bulkUpKcal(Member member){
-        return basicKcal(member)+500;
+    private double bulkUpKcal(Member member){
+        if (member.getGender().equals("남성")){
+
+            return basicKcal(member)+500;
+        }else{
+            return basicKcal(member)+300;
+        }
     }
 
 

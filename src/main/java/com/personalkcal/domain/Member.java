@@ -1,20 +1,18 @@
 package com.personalkcal.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.personalkcal.Dto.RegisterDTO;
+import jakarta.persistence.*;
+import lombok.*;
 
 
 @Getter
+@Setter
 @Entity
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,12 +24,8 @@ public class Member {
     private int weight;
     private int age;
 
-
-    protected Member() {
-    }
-
-
-
+    @Embedded
+    private Kcal kcal;
 
 
 

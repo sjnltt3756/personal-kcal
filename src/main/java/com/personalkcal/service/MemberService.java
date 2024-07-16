@@ -2,16 +2,18 @@ package com.personalkcal.service;
 
 import com.personalkcal.Dto.LoginDTO;
 import com.personalkcal.Dto.MemberDTO;
+import com.personalkcal.Dto.RegisterDTO;
 import com.personalkcal.mapper.MemberMapper;
 import com.personalkcal.domain.Member;
 import com.personalkcal.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MemberService {
 
     private final MemberMapper memberMapper;
@@ -32,13 +34,13 @@ public class MemberService {
 
     /**
      * 회원등록
-     * @param memberDTO
+     * @param registerDto
      * @return
      */
-    public MemberDTO registerMember(MemberDTO memberDTO) {
-        Member member = memberMapper.toMember(memberDTO);
+    public RegisterDTO registerMember(RegisterDTO registerDto) {
+        Member member = memberMapper.toMemberRegister(registerDto);
         Member savedMember = memberRepository.save(member);
-        return memberMapper.toMemberDTO(savedMember);
+        return memberMapper.toRegisterDTO(savedMember);
     }
 
 

@@ -2,6 +2,7 @@ package com.personalkcal.service;
 
 import com.personalkcal.Dto.LoginDTO;
 import com.personalkcal.Dto.MemberDTO;
+import com.personalkcal.Dto.RegisterDTO;
 import com.personalkcal.domain.Member;
 import com.personalkcal.mapper.MemberMapper;
 import com.personalkcal.repository.MemberRepository;
@@ -33,7 +34,7 @@ class MemberServiceTest {
     private Member member;
     private MemberDTO memberDTO;
     private LoginDTO loginDTO;
-
+    private RegisterDTO registerDTO;
     @BeforeEach
     void setUp() {
         member = new Member();
@@ -83,12 +84,12 @@ class MemberServiceTest {
         when(memberRepository.save(any(Member.class))).thenReturn(member);
         when(memberMapper.toMemberDTO(member)).thenReturn(memberDTO);
 
-        MemberDTO result = memberService.registerMember(memberDTO);
+        RegisterDTO result = memberService.registerMember(registerDTO);
 
         assertEquals("testNickname", result.getNickname());
-        verify(memberMapper, times(1)).toMember(memberDTO);
+        verify(memberMapper, times(1)).toMemberRegister(registerDTO);
         verify(memberRepository, times(1)).save(member);
-        verify(memberMapper, times(1)).toMemberDTO(member);
+        verify(memberMapper, times(1)).toRegisterDTO(member);
 
 
     }

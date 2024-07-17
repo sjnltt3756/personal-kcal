@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/member")
+@CrossOrigin("/localhost:3000")
 public class MemberController {
 
     private final MemberService memberService;
@@ -22,8 +23,8 @@ public class MemberController {
     private final MemberMapper memberMapper;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginDTO> loginMember(@RequestBody LoginDTO loginDTO) {
-        LoginDTO loggedInMember = memberService.loginMember(loginDTO);
+    public ResponseEntity<MemberDTO> loginMember(@RequestBody LoginDTO loginDTO) {
+        MemberDTO loggedInMember = memberService.loginMember(loginDTO);
         return ResponseEntity.ok(loggedInMember);
     }
 
@@ -34,8 +35,8 @@ public class MemberController {
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<MemberDTO> viewMember(@PathVariable Long id) {
+    @GetMapping("/view/{id}")
+    public ResponseEntity<MemberDTO> viewMember(@PathVariable(name = "id") Long id) {
         MemberDTO memberDTO = memberService.viewMember(id);
         // MemberDTO를 Member 엔티티로 매핑
         Member member = memberMapper.toMember(memberDTO);

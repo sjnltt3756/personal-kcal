@@ -25,11 +25,11 @@ public class MemberService {
      * @param dto
      * @return
      */
-    public LoginDTO loginMember(LoginDTO dto){
+    public MemberDTO loginMember(LoginDTO dto){
         String nickname = dto.getNickname();
         Member member = memberRepository.findByNickname(nickname)
                 .orElseThrow(() -> new RuntimeException("회원을 찾을 수 없습니다."));
-        return memberMapper.toLoginDto(member);
+        return memberMapper.toMemberDTO(member);
     }
 
     /**

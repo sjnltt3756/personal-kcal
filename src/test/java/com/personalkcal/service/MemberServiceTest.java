@@ -6,8 +6,8 @@ import com.personalkcal.Dto.RegisterDTO;
 import com.personalkcal.domain.Member;
 import com.personalkcal.mapper.MemberMapper;
 import com.personalkcal.repository.MemberRepository;
+import com.personalkcal.service.implementation.MemberServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,7 +29,7 @@ class MemberServiceTest {
     private MemberRepository memberRepository;
 
     @InjectMocks
-    private MemberService memberService;
+    private MemberServiceImpl memberService;
 
     private Member member;
     private MemberDTO memberDTO;

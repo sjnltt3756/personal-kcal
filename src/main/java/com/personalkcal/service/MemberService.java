@@ -12,5 +12,5 @@ public interface MemberService {
 
     RegisterDTO registerMember(RegisterDTO registerDto);
 
-    MemberDTO viewMember(Long mNo);
+    MemberDTO viewMember(Long id);
 }

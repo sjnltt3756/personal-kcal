@@ -5,8 +5,8 @@ import com.personalkcal.Dto.MemberDTO;
 import com.personalkcal.Dto.RegisterDTO;
 import com.personalkcal.domain.Member;
 import com.personalkcal.mapper.MemberMapper;
-import com.personalkcal.service.KcalService;
-import com.personalkcal.service.MemberService;
+import com.personalkcal.service.implementation.KcalServiceImpl;
+import com.personalkcal.service.implementation.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("/localhost:3000")
 public class MemberController {
 
-    private final MemberService memberService;
-    private final KcalService kcalService;
+    private final MemberServiceImpl memberService;
+    private final KcalServiceImpl kcalService;
     private final MemberMapper memberMapper;
 
     @PostMapping("/login")

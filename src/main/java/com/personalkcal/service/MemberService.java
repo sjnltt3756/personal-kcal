@@ -3,54 +3,14 @@ package com.personalkcal.service;
 import com.personalkcal.Dto.LoginDTO;
 import com.personalkcal.Dto.MemberDTO;
 import com.personalkcal.Dto.RegisterDTO;
-import com.personalkcal.mapper.MemberMapper;
-import com.personalkcal.domain.Member;
-import com.personalkcal.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Service
-@RequiredArgsConstructor
-@Transactional
-public class MemberService {
+public interface MemberService {
+    MemberDTO loginMember(LoginDTO dto);
 
-    private final MemberMapper memberMapper;
-    private final MemberRepository memberRepository;
+    RegisterDTO registerMember(RegisterDTO registerDto);
 
-
-    /**
-     * 닉네임으로 로그인
-     * @param dto
-     * @return
-     */
-    public MemberDTO loginMember(LoginDTO dto){
-        String nickname = dto.getNickname();
-        Member member = memberRepository.findByNickname(nickname)
-                .orElseThrow(() -> new RuntimeException("회원을 찾을 수 없습니다."));
-        return memberMapper.toMemberDTO(member);
-    }
-
-    /**
-     * 회원등록
-     * @param registerDto
-     * @return
-     */
-    public RegisterDTO registerMember(RegisterDTO registerDto) {
-        Member member = memberMapper.toMemberRegister(registerDto);
-        Member savedMember = memberRepository.save(member);
-        return memberMapper.toRegisterDTO(savedMember);
-    }
-
-
-    /**
-     * 회원 정보 출력
-     * @param mNo
-     * @return
-     */
-    public MemberDTO viewMember(Long mNo){
-        Member member = memberRepository.findById(mNo).orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
-        return memberMapper.toMemberDTO(member);
-    }
+    MemberDTO viewMember(Long mNo);
 }

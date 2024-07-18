@@ -31,13 +31,13 @@ const ViewMember = ({ memberId }) => {
       <h2>Member Details</h2>
       <p>닉네임: {member.nickname}</p>
       <p>성별: {member.gender}</p>
-      <p>키: {member.height}</p>
-      <p>몸무게: {member.weight}</p>
+      <p>키: {member.height}cm</p>
+      <p>몸무게: {member.weight}kg</p>
       <p>나이: {member.age}</p>
-      <p>다이어트 칼로리: {member.kcalDto.dietKcal}</p>
-      <p>유지 칼로리: {member.kcalDto.maintainKcal}</p>
-      <p>린매스업 칼로리: {member.kcalDto.massUpKcal}</p>
-      <p>벌크업 칼로리: {member.kcalDto.bulkUpKcal}</p>
+      <p>다이어트 칼로리: {member.kcalDto.dietKcal}Kcal</p>
+      <p>유지 칼로리: {member.kcalDto.maintainKcal}Kcal</p>
+      <p>린매스업 칼로리: {member.kcalDto.massUpKcal}Kcal</p>
+      <p>벌크업 칼로리: {member.kcalDto.bulkUpKcal}Kcal</p>
     </div>
   );
 };

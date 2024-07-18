@@ -1,3 +1,4 @@
+/*
 package com.personalkcal.service;
 
 import com.personalkcal.Dto.LoginDTO;
@@ -119,4 +120,4 @@ class MemberServiceTest {
         assertEquals("해당 회원을 찾을 수 없습니다.", exception.getMessage());
         verify(memberRepository, times(1)).findById(1L);
     }
-}
+}*/

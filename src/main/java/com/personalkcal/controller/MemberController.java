@@ -38,13 +38,8 @@ public class MemberController {
     @GetMapping("/view/{id}")
     public ResponseEntity<MemberDTO> viewMember(@PathVariable(name = "id") Long id) {
         MemberDTO memberDTO = memberService.viewMember(id);
-        // MemberDTO를 Member 엔티티로 매핑
         Member member = memberMapper.toMember(memberDTO);
-
-        // 회원의 칼로리 정보를 계산하여 설정합니다.
         kcalService.calculateKcalForMember(member);
-
-        // Member 엔티티를 다시 MemberDTO로 매핑하여 반환합니다.
         memberDTO = memberMapper.toMemberDTO(member);
         return ResponseEntity.ok(memberDTO);
     }

@@ -20,8 +20,8 @@ public class Member {
     private String nickname;
     private String gender;
 
-    private int height;
-    private int weight;
+    private double height;
+    private double weight;
     private int age;
 
     @Embedded

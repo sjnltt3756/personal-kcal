@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
 public class KcalServiceImpl implements KcalService {
 
 
-    private static final DecimalFormat df = new DecimalFormat("0.00");
+    private static final DecimalFormat df = new DecimalFormat("0.0");
 
     @Override
     public void calculateKcalForMember(Member member) {
@@ -23,6 +23,7 @@ public class KcalServiceImpl implements KcalService {
         kcal.setMaintainKcal(maintainKcal(member));
         kcal.setMassUpKcal(massUpKcal(member));
         kcal.setBulkUpKcal(bulkUpKcal(member));
+        member.setKcal(kcal);
     }
 
 

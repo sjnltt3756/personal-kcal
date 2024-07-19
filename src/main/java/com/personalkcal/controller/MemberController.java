@@ -39,9 +39,6 @@ public class MemberController {
     @GetMapping("/view/{id}")
     public ResponseEntity<MemberDTO> viewMember(@PathVariable(name = "id") Long id) {
         MemberDTO memberDTO = memberService.viewMember(id);
-        Member member = memberMapper.toMember(memberDTO);
-        kcalService.calculateKcalForMember(member);
-        memberDTO = memberMapper.toMemberDTO(member);
         return ResponseEntity.ok(memberDTO);
     }
 

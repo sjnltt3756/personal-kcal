@@ -3,6 +3,7 @@ package com.personalkcal.service.implementation;
 import com.personalkcal.Dto.LoginDTO;
 import com.personalkcal.Dto.MemberDTO;
 import com.personalkcal.Dto.RegisterDTO;
+import com.personalkcal.Dto.UpdateDTO;
 import com.personalkcal.mapper.MemberMapper;
 import com.personalkcal.domain.Member;
 import com.personalkcal.repository.MemberRepository;
@@ -57,4 +58,20 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberRepository.findById(mNo).orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
         return memberMapper.toMemberDTO(member);
     }
+
+    /**
+     * 회원 정보 수정
+     * @param id
+     * @param updateDTO
+     * @return
+     */
+    @Override
+    public MemberDTO updateMember(Long id, UpdateDTO updateDTO){
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
+        memberMapper.updateDTOToMember(updateDTO, member);
+        Member updatedMember = memberRepository.save(member);
+        return memberMapper.toMemberDTO(updatedMember);
+    }
+
 }

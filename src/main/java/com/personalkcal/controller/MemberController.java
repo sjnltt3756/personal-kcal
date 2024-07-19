@@ -3,6 +3,7 @@ package com.personalkcal.controller;
 import com.personalkcal.Dto.LoginDTO;
 import com.personalkcal.Dto.MemberDTO;
 import com.personalkcal.Dto.RegisterDTO;
+import com.personalkcal.Dto.UpdateDTO;
 import com.personalkcal.domain.Member;
 import com.personalkcal.mapper.MemberMapper;
 import com.personalkcal.service.implementation.KcalServiceImpl;
@@ -44,4 +45,9 @@ public class MemberController {
         return ResponseEntity.ok(memberDTO);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<MemberDTO> updateMember(@PathVariable(name="id")Long id, @RequestBody UpdateDTO updateDTO){
+        MemberDTO updatedMember = memberService.updateMember(id, updateDTO);
+        return ResponseEntity.ok(updatedMember);
+    }
 }

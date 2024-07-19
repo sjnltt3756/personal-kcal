@@ -1,8 +1,8 @@
 package com.personalkcal.Dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 public class MemberDTO {
@@ -14,5 +14,5 @@ public class MemberDTO {
     private double weight;
     private int age;
 
-    private KcalDto kcalDto;
+    private KcalDTO kcalDto;
 }

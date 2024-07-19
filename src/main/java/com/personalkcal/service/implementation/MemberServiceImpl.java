@@ -7,6 +7,7 @@ import com.personalkcal.Dto.UpdateDTO;
 import com.personalkcal.mapper.MemberMapper;
 import com.personalkcal.domain.Member;
 import com.personalkcal.repository.MemberRepository;
+import com.personalkcal.service.KcalService;
 import com.personalkcal.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberMapper memberMapper;
     private final MemberRepository memberRepository;
-
+    private final KcalService kcalService;
 
     /**
      * 닉네임으로 로그인
@@ -55,7 +56,9 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public MemberDTO viewMember(Long mNo){
-        Member member = memberRepository.findById(mNo).orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
+        Member member = memberRepository.findById(mNo)
+                .orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
+        kcalService.calculateKcalForMember(member);
         return memberMapper.toMemberDTO(member);
     }
 

@@ -31,3 +31,13 @@ export const viewMember = async (id) => {
     throw error;
   }
 };
+
+export const updateMember = async (id, updateDTO) => {
+  try {
+    const response = await axios.put(`${API_URL}/member/update/${id}`, updateDTO);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching member:", error);
+    throw error;
+  }
+};

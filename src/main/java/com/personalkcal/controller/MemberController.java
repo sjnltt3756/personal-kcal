@@ -4,7 +4,6 @@ import com.personalkcal.Dto.LoginDTO;
 import com.personalkcal.Dto.MemberDTO;
 import com.personalkcal.Dto.RegisterDTO;
 import com.personalkcal.Dto.UpdateDTO;
-import com.personalkcal.domain.Member;
 import com.personalkcal.mapper.MemberMapper;
 import com.personalkcal.service.implementation.KcalServiceImpl;
 import com.personalkcal.service.implementation.MemberServiceImpl;

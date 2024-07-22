@@ -1,10 +1,9 @@
 package com.personalkcal.service.implementation;
 
-import com.personalkcal.Dto.LoginDTO;
-import com.personalkcal.Dto.MemberDTO;
-import com.personalkcal.Dto.RegisterDTO;
-import com.personalkcal.Dto.UpdateDTO;
-import com.personalkcal.mapper.MemberMapper;
+import com.personalkcal.dto.member.LoginDTO;
+import com.personalkcal.dto.member.MemberDTO;
+import com.personalkcal.dto.member.RegisterDTO;
+import com.personalkcal.dto.member.UpdateDTO;
 import com.personalkcal.domain.Member;
 import com.personalkcal.repository.MemberRepository;
 import com.personalkcal.service.KcalService;
@@ -19,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MemberServiceImpl implements MemberService {
 
-    private final MemberMapper memberMapper;
+
     private final MemberRepository memberRepository;
     private final KcalService kcalService;
 
@@ -29,11 +28,11 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
     @Override
-    public MemberDTO loginMember(LoginDTO dto){
-        String nickname = dto.getNickname();
+    public MemberDTO loginMember(LoginDTO dto) {
+        String nickname = dto.nickname();
         Member member = memberRepository.findByNickname(nickname)
                 .orElseThrow(() -> new RuntimeException("회원을 찾을 수 없습니다."));
-        return memberMapper.toMemberDTO(member);
+        return new MemberDTO(member); // 레코드 생성자를 사용하여 MemberDTO 객체 생성
     }
 
     /**
@@ -43,9 +42,22 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public RegisterDTO registerMember(RegisterDTO registerDto) {
-        Member member = memberMapper.toMemberRegister(registerDto);
+        // RegisterDTO를 Member로 변환
+        Member member = new Member(
+                null, // ID는 null로 설정, 생성 후 DB에서 자동 생성될 것임
+                registerDto.nickname(),
+                registerDto.gender(),
+                registerDto.height(),
+                registerDto.weight(),
+                registerDto.age(),
+                null // 초기에는 Kcal이 설정되지 않음
+        );
+
+        // 회원 저장
         Member savedMember = memberRepository.save(member);
-        return memberMapper.toRegisterDTO(savedMember);
+
+        // 저장된 Member를 RegisterDTO로 변환하여 반환
+        return new RegisterDTO(savedMember);
     }
 
 
@@ -55,11 +67,16 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
     @Override
-    public MemberDTO viewMember(Long mNo){
+    public MemberDTO viewMember(Long mNo) {
+        // 회원을 ID로 조회
         Member member = memberRepository.findById(mNo)
                 .orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
+
+        // 회원의 칼로리 정보 계산
         kcalService.calculateKcalForMember(member);
-        return memberMapper.toMemberDTO(member);
+
+        // MemberDTO 레코드 생성자를 사용하여 변환
+        return new MemberDTO(member);
     }
 
     /**
@@ -69,12 +86,27 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
     @Override
-    public MemberDTO updateMember(Long id, UpdateDTO updateDTO){
+    public MemberDTO updateMember(Long id, UpdateDTO updateDTO) {
+        // 회원을 ID로 조회
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
-        memberMapper.updateDTOToMember(updateDTO, member);
-        Member updatedMember = memberRepository.save(member);
-        return memberMapper.toMemberDTO(updatedMember);
+
+        // UpdateDTO의 값을 사용하여 Member 객체를 업데이트
+        Member updatedMember = new Member(
+                member.getId(), // 기존 ID를 그대로 사용
+                updateDTO.nickname() != null ? updateDTO.nickname() : member.getNickname(),
+                member.getGender(), // 성별은 변경하지 않음
+                updateDTO.height() != null ? updateDTO.height() : member.getHeight(),
+                updateDTO.weight() != null ? updateDTO.weight() : member.getWeight(),
+                updateDTO.age() != null ? updateDTO.age() : member.getAge(),
+                member.getKcal() // 칼로리 정보는 변경하지 않음
+        );
+
+        // 업데이트된 회원을 데이터베이스에 저장
+        Member savedMember = memberRepository.save(updatedMember);
+
+        // 저장된 Member를 MemberDTO로 변환하여 반환
+        return new MemberDTO(savedMember);
     }
 
 }

@@ -3,6 +3,7 @@ package com.personalkcal.service.implementation;
 
 import com.personalkcal.domain.Kcal;
 import com.personalkcal.domain.Member;
+import com.personalkcal.dto.kcal.KcalDTO;
 import com.personalkcal.service.KcalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,14 +17,28 @@ public class KcalServiceImpl implements KcalService {
 
     private static final DecimalFormat df = new DecimalFormat("0.0");
 
-    @Override
-    public void calculateKcalForMember(Member member) {
-        Kcal kcal = new Kcal();
-        kcal.setDietKcal(dietKcal(member));
-        kcal.setMaintainKcal(maintainKcal(member));
-        kcal.setMassUpKcal(massUpKcal(member));
-        kcal.setBulkUpKcal(bulkUpKcal(member));
-        member.setKcal(kcal);
+    public Member calculateKcalForMember(Member member) {
+        KcalDTO kcalDTO = new KcalDTO(
+                dietKcal(member),
+                maintainKcal(member),
+                massUpKcal(member),
+                bulkUpKcal(member)
+        );
+        Kcal kcal = new Kcal(
+                kcalDTO.dietKcal(),
+                kcalDTO.maintainKcal(),
+                kcalDTO.massUpKcal(),
+                kcalDTO.bulkUpKcal()
+        );
+
+        // 새로운 Member 객체 생성하여 반환
+        return new Member(
+                member.getGender(),
+                member.getWeight(),
+                member.getHeight(),
+                member.getAge(),
+                kcal
+        );
     }
 
 

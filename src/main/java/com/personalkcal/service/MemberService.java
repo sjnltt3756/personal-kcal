@@ -1,11 +1,9 @@
 package com.personalkcal.service;
 
-import com.personalkcal.Dto.LoginDTO;
-import com.personalkcal.Dto.MemberDTO;
-import com.personalkcal.Dto.RegisterDTO;
-import com.personalkcal.Dto.UpdateDTO;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.personalkcal.dto.member.LoginDTO;
+import com.personalkcal.dto.member.MemberDTO;
+import com.personalkcal.dto.member.RegisterDTO;
+import com.personalkcal.dto.member.UpdateDTO;
 
 
 public interface MemberService {

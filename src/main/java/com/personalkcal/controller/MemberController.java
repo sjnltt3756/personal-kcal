@@ -1,10 +1,9 @@
 package com.personalkcal.controller;
 
-import com.personalkcal.Dto.LoginDTO;
-import com.personalkcal.Dto.MemberDTO;
-import com.personalkcal.Dto.RegisterDTO;
-import com.personalkcal.Dto.UpdateDTO;
-import com.personalkcal.mapper.MemberMapper;
+import com.personalkcal.dto.member.LoginDTO;
+import com.personalkcal.dto.member.MemberDTO;
+import com.personalkcal.dto.member.RegisterDTO;
+import com.personalkcal.dto.member.UpdateDTO;
 import com.personalkcal.service.implementation.KcalServiceImpl;
 import com.personalkcal.service.implementation.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,7 @@ public class MemberController {
 
     private final MemberServiceImpl memberService;
     private final KcalServiceImpl kcalService;
-    private final MemberMapper memberMapper;
+
 
     @PostMapping("/login")
     public ResponseEntity<MemberDTO> loginMember(@RequestBody LoginDTO loginDTO) {
@@ -40,7 +39,6 @@ public class MemberController {
         MemberDTO memberDTO = memberService.viewMember(id);
         return ResponseEntity.ok(memberDTO);
     }
-
     @PutMapping("/update/{id}")
     public ResponseEntity<MemberDTO> updateMember(@PathVariable(name="id")Long id, @RequestBody UpdateDTO updateDTO){
         MemberDTO updatedMember = memberService.updateMember(id, updateDTO);

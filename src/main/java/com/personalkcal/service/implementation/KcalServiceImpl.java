@@ -3,42 +3,39 @@ package com.personalkcal.service.implementation;
 
 import com.personalkcal.domain.Kcal;
 import com.personalkcal.domain.Member;
-import com.personalkcal.dto.kcal.KcalDTO;
 import com.personalkcal.service.KcalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.DecimalFormat;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class KcalServiceImpl implements KcalService {
 
 
     private static final DecimalFormat df = new DecimalFormat("0.0");
 
     public Member calculateKcalForMember(Member member) {
-        KcalDTO kcalDTO = new KcalDTO(
+
+        Kcal kcal = new Kcal(
                 dietKcal(member),
                 maintainKcal(member),
                 massUpKcal(member),
                 bulkUpKcal(member)
         );
-        Kcal kcal = new Kcal(
-                kcalDTO.dietKcal(),
-                kcalDTO.maintainKcal(),
-                kcalDTO.massUpKcal(),
-                kcalDTO.bulkUpKcal()
-        );
 
         // 새로운 Member 객체 생성하여 반환
-        return new Member(
-                member.getGender(),
-                member.getWeight(),
-                member.getHeight(),
-                member.getAge(),
-                kcal
-        );
+        return Member.builder()
+                .nickname(member.getNickname())
+                .gender(member.getGender())
+                .height(member.getHeight())
+                .weight(member.getWeight())
+                .age(member.getAge())
+                .kcal(member.getKcal())
+                .build();
     }
 
 

@@ -14,6 +14,7 @@ public class Member {
     private Long id;
 
     private String nickname;
+
     private String gender;
 
     private Double height;

@@ -1,17 +1,15 @@
 package com.personalkcal.service;
 
-import com.personalkcal.dto.member.LoginDTO;
-import com.personalkcal.dto.member.MemberDTO;
-import com.personalkcal.dto.member.RegisterDTO;
-import com.personalkcal.dto.member.UpdateDTO;
+import com.personalkcal.dto.member.MemberRequest.*;
+import com.personalkcal.dto.member.MemberResponse.*;
 
 
 public interface MemberService {
-    MemberDTO loginMember(LoginDTO dto);
+    LoginResponse loginMember(LoginRequest request);
 
-    RegisterDTO registerMember(RegisterDTO registerDto);
+    RegisterResponse registerMember(RegisterRequest request);
 
-    MemberDTO viewMember(Long id);
+    ViewResponse viewMember(Long id);
 
-    MemberDTO updateMember(Long id, UpdateDTO updateDTO);
+    UpdateResponse updateMember(Long id, UpdateRequest request);
 }

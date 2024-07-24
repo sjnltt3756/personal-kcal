@@ -1,15 +1,15 @@
 package com.personalkcal.controller;
 
-import com.personalkcal.dto.member.LoginDTO;
-import com.personalkcal.dto.member.MemberDTO;
-import com.personalkcal.dto.member.RegisterDTO;
-import com.personalkcal.dto.member.UpdateDTO;
+import com.personalkcal.dto.member.MemberRequest.*;
+import com.personalkcal.dto.member.MemberResponse.*;
 import com.personalkcal.service.implementation.KcalServiceImpl;
 import com.personalkcal.service.implementation.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.naming.Name;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,26 +22,26 @@ public class MemberController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<MemberDTO> loginMember(@RequestBody LoginDTO loginDTO) {
-        MemberDTO loggedInMember = memberService.loginMember(loginDTO);
+    public ResponseEntity<?> loginMember(@RequestBody LoginRequest request) {
+        LoginResponse loggedInMember = memberService.loginMember(request);
         return ResponseEntity.ok(loggedInMember);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterDTO> registerMember(@RequestBody RegisterDTO registerDTO) {
-        RegisterDTO registeredMember = memberService.registerMember(registerDTO);
+    public ResponseEntity<?> registerMember(@RequestBody RegisterRequest request) {
+        RegisterResponse registeredMember = memberService.registerMember(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredMember);
     }
 
 
     @GetMapping("/view/{id}")
-    public ResponseEntity<MemberDTO> viewMember(@PathVariable(name = "id") Long id) {
-        MemberDTO memberDTO = memberService.viewMember(id);
-        return ResponseEntity.ok(memberDTO);
+    public ResponseEntity<?> viewMember(@PathVariable(name = "id") Long id) {
+        ViewResponse viewedMember = memberService.viewMember(id);
+        return ResponseEntity.ok(viewedMember);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<MemberDTO> updateMember(@PathVariable(name="id")Long id, @RequestBody UpdateDTO updateDTO){
-        MemberDTO updatedMember = memberService.updateMember(id, updateDTO);
+    public ResponseEntity<?> updateMember(@PathVariable(name="id")Long id, @RequestBody UpdateRequest request){
+        UpdateResponse updatedMember = memberService.updateMember(id, request);
         return ResponseEntity.ok(updatedMember);
     }
 }

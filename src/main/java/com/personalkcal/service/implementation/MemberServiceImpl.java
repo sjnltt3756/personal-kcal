@@ -1,10 +1,10 @@
 package com.personalkcal.service.implementation;
 
-import com.personalkcal.dto.member.LoginDTO;
-import com.personalkcal.dto.member.MemberDTO;
-import com.personalkcal.dto.member.RegisterDTO;
-import com.personalkcal.dto.member.UpdateDTO;
 import com.personalkcal.domain.Member;
+import com.personalkcal.dto.member.MemberResponse.*;
+import com.personalkcal.dto.member.MemberRequest.*;
+import com.personalkcal.exception.member.ExistMemberException;
+import com.personalkcal.exception.member.NotFoundMemberException;
 import com.personalkcal.repository.MemberRepository;
 import com.personalkcal.service.KcalService;
 import com.personalkcal.service.MemberService;
@@ -12,53 +12,49 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class MemberServiceImpl implements MemberService {
 
-
     private final MemberRepository memberRepository;
     private final KcalService kcalService;
 
     /**
      * 닉네임으로 로그인
-     * @param dto
+     * @param request
      * @return
      */
-    @Override
-    public MemberDTO loginMember(LoginDTO dto) {
-        String nickname = dto.nickname();
-        Member member = memberRepository.findByNickname(nickname)
-                .orElseThrow(() -> new RuntimeException("회원을 찾을 수 없습니다."));
-        return new MemberDTO(member); // 레코드 생성자를 사용하여 MemberDTO 객체 생성
+    public LoginResponse loginMember(LoginRequest request) {
+        String nickname = request.nickname();
+        findMemberByNickname(nickname);
+        Member member = memberRepository.findByNickname(nickname).get();
+        return new LoginResponse(member);
     }
 
     /**
      * 회원등록
-     * @param registerDto
+     * @param request
      * @return
      */
     @Override
-    public RegisterDTO registerMember(RegisterDTO registerDto) {
-        // RegisterDTO를 Member로 변환
-        Member member = new Member(
-                null,
-                registerDto.nickname(),
-                registerDto.gender(),
-                registerDto.height(),
-                registerDto.weight(),
-                registerDto.age(),
-                null
-
-        );
+    public RegisterResponse registerMember(RegisterRequest request) {
+        validateExistLoginNickname(request);
+        Member member = Member.builder()
+                .nickname(request.nickname())
+                .gender(request.gender())
+                .height(request.height())
+                .weight(request.weight())
+                .age(request.age())
+                .build();
 
         // 회원 저장
         Member savedMember = memberRepository.save(member);
 
-        // 저장된 Member를 RegisterDTO로 변환하여 반환
-        return new RegisterDTO(savedMember);
+        return new RegisterResponse(savedMember);
     }
 
 
@@ -68,46 +64,51 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
     @Override
-    public MemberDTO viewMember(Long id) {
-        // 회원을 ID로 조회
-        Member member = memberRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
-
-        // 회원의 칼로리 정보 계산
-        Member member1 = kcalService.calculateKcalForMember(member);
-        Member view = memberRepository.save(member1);
-        // MemberDTO 레코드 생성자를 사용하여 변환
-        return new MemberDTO(view);
+    public ViewResponse viewMember(Long id) {
+        Member member = findMemberById(id);
+        Member memberKcal = kcalService.calculateKcalForMember(member);
+        Member view = memberRepository.save(memberKcal);
+        return new ViewResponse(view);
     }
 
     /**
      * 회원 정보 수정
      * @param id
-     * @param updateDTO
+     * @param request
      * @return
      */
     @Override
-    public MemberDTO updateMember(Long id, UpdateDTO updateDTO) {
-        // 회원을 ID로 조회
-        Member member = memberRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
+    public UpdateResponse updateMember(Long id, UpdateRequest request) {
+        Member member = findMemberById(id);
+        Member updatedMember = Member.builder()
+                .id(member.getId())
+                .nickname(request.nickname() != null ? request.nickname() : member.getNickname())
+                .gender(member.getGender())
+                .height(request.height() != 0 ? request.height() : member.getHeight())
+                .weight(request.weight() != 0 ? request.weight() : member.getWeight())
+                .age(request.age() != 0 ? request.age() : member.getAge())
+                .build();
 
-        // UpdateDTO의 값을 사용하여 Member 객체를 업데이트
-        Member updatedMember = new Member(
-                member.getId(),
-                updateDTO.nickname() != null ? updateDTO.nickname() : member.getNickname(),
-                member.getGender(),
-                updateDTO.height() != null ? updateDTO.height() : member.getHeight(),
-                updateDTO.weight() != null ? updateDTO.weight() : member.getWeight(),
-                updateDTO.age() != null ? updateDTO.age() : member.getAge(),
-                member.getKcal() // 칼로리 정보는 변경하지 않음
-        );
-
-        // 업데이트된 회원을 데이터베이스에 저장
         Member savedMember = memberRepository.save(updatedMember);
 
-        // 저장된 Member를 MemberDTO로 변환하여 반환
-        return new MemberDTO(savedMember);
+        return new UpdateResponse(savedMember);
+    }
+
+    private void validateExistLoginNickname(RegisterRequest request) {
+        Optional<Member> findMembers = memberRepository.findByNickname(request.nickname());
+        if (findMembers.isPresent()) {
+            throw new ExistMemberException("이미 존재하는 닉네임입니다.");
+        }
+    }
+
+    private Member findMemberByNickname(String nickname) {
+        return memberRepository.findByNickname(nickname)
+                .orElseThrow(() -> new NotFoundMemberException("해당 회원을 찾을 수 없습니다."));
+    }
+
+    private Member findMemberById(Long id){
+        return memberRepository.findById(id)
+                .orElseThrow(() -> new NotFoundMemberException("해당 회원을 찾을 수 없습니다."));
     }
 
 }

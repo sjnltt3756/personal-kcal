@@ -7,13 +7,13 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
 public class Kcal {
-    private double dietKcal;
-    private double maintainKcal;
-    private double massUpKcal;
-    private double bulkUpKcal;
+    private Double dietKcal;
+    private Double maintainKcal;
+    private Double massUpKcal;
+    private Double bulkUpKcal;
 
     @Builder
-    public Kcal(double dietKcal,double maintainKcal, double massUpKcal,double bulkUpKcal){
+    public Kcal(Double dietKcal,Double maintainKcal, Double massUpKcal,Double bulkUpKcal){
         this.dietKcal=dietKcal;
         this.maintainKcal=maintainKcal;
         this.massUpKcal=massUpKcal;

@@ -42,7 +42,8 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public RegisterResponse registerMember(RegisterRequest request) {
-        validateExistLoginNickname(request);
+        String nickname = request.nickname();
+        validateExistNickname(nickname);
         Member member = Member.builder()
                 .nickname(request.nickname())
                 .gender(request.gender())
@@ -51,7 +52,6 @@ public class MemberServiceImpl implements MemberService {
                 .age(request.age())
                 .build();
 
-        // 회원 저장
         Member savedMember = memberRepository.save(member);
 
         return new RegisterResponse(savedMember);
@@ -67,8 +67,7 @@ public class MemberServiceImpl implements MemberService {
     public ViewResponse viewMember(Long id) {
         Member member = findMemberById(id);
         Member memberKcal = kcalService.calculateKcalForMember(member);
-        Member view = memberRepository.save(memberKcal);
-        return new ViewResponse(view);
+        return new ViewResponse(memberKcal);
     }
 
     /**
@@ -80,6 +79,8 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public UpdateResponse updateMember(Long id, UpdateRequest request) {
         Member member = findMemberById(id);
+        String nickname = request.nickname();
+        validateExistNickname(nickname);
         Member updatedMember = Member.builder()
                 .id(member.getId())
                 .nickname(request.nickname() != null ? request.nickname() : member.getNickname())
@@ -94,11 +95,14 @@ public class MemberServiceImpl implements MemberService {
         return new UpdateResponse(savedMember);
     }
 
-    private void validateExistLoginNickname(RegisterRequest request) {
-        Optional<Member> findMembers = memberRepository.findByNickname(request.nickname());
-        if (findMembers.isPresent()) {
-            throw new ExistMemberException("이미 존재하는 닉네임입니다.");
-        }
+
+
+    private void validateExistNickname(String nickname) {
+        memberRepository.findByNickname(nickname)
+                .ifPresent(member -> {
+                    throw new ExistMemberException("이미 존재하는 닉네임입니다.");
+                });
+
     }
 
     private Member findMemberByNickname(String nickname) {

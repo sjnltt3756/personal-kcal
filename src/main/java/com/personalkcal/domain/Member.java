@@ -3,12 +3,8 @@ package com.personalkcal.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
@@ -28,7 +24,9 @@ public class Member {
     private Kcal kcal;
 
     @Builder
-    public Member(String gender, double weight, double height, int age, Kcal kcal) {
+    public Member(Long id, String nickname, String gender, double weight, double height, int age, Kcal kcal) {
+        this.id=id;
+        this.nickname=nickname;
         this.gender = gender;
         this.weight = weight;
         this.height = height;

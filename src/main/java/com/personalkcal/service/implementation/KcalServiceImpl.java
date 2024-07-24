@@ -34,7 +34,7 @@ public class KcalServiceImpl implements KcalService {
                 .height(member.getHeight())
                 .weight(member.getWeight())
                 .age(member.getAge())
-                .kcal(member.getKcal())
+                .kcal(kcal)
                 .build();
     }
 

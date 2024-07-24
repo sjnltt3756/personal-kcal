@@ -44,13 +44,14 @@ public class MemberServiceImpl implements MemberService {
     public RegisterDTO registerMember(RegisterDTO registerDto) {
         // RegisterDTO를 Member로 변환
         Member member = new Member(
-                null, // ID는 null로 설정, 생성 후 DB에서 자동 생성될 것임
+                null,
                 registerDto.nickname(),
                 registerDto.gender(),
                 registerDto.height(),
                 registerDto.weight(),
                 registerDto.age(),
-                null // 초기에는 Kcal이 설정되지 않음
+                null
+
         );
 
         // 회원 저장
@@ -63,20 +64,20 @@ public class MemberServiceImpl implements MemberService {
 
     /**
      * 회원 정보 출력
-     * @param mNo
+     * @param id
      * @return
      */
     @Override
-    public MemberDTO viewMember(Long mNo) {
+    public MemberDTO viewMember(Long id) {
         // 회원을 ID로 조회
-        Member member = memberRepository.findById(mNo)
+        Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("해당 회원을 찾을 수 없습니다."));
 
         // 회원의 칼로리 정보 계산
-        kcalService.calculateKcalForMember(member);
-
+        Member member1 = kcalService.calculateKcalForMember(member);
+        Member view = memberRepository.save(member1);
         // MemberDTO 레코드 생성자를 사용하여 변환
-        return new MemberDTO(member);
+        return new MemberDTO(view);
     }
 
     /**
@@ -93,9 +94,9 @@ public class MemberServiceImpl implements MemberService {
 
         // UpdateDTO의 값을 사용하여 Member 객체를 업데이트
         Member updatedMember = new Member(
-                member.getId(), // 기존 ID를 그대로 사용
+                member.getId(),
                 updateDTO.nickname() != null ? updateDTO.nickname() : member.getNickname(),
-                member.getGender(), // 성별은 변경하지 않음
+                member.getGender(),
                 updateDTO.height() != null ? updateDTO.height() : member.getHeight(),
                 updateDTO.weight() != null ? updateDTO.weight() : member.getWeight(),
                 updateDTO.age() != null ? updateDTO.age() : member.getAge(),

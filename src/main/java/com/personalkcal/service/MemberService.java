@@ -12,4 +12,6 @@ public interface MemberService {
     ViewResponse viewMember(Long id);
 
     UpdateResponse updateMember(Long id, UpdateRequest request);
+
+    void deleteMember(Long id);
 }

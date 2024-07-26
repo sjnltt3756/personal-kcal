@@ -21,7 +21,6 @@ public class MemberController {
     private final MemberServiceImpl memberService;
     private final KcalServiceImpl kcalService;
 
-
     @PostMapping("/login")
     public ResponseEntity<?> loginMember(@Valid @RequestBody LoginRequest request) {
         LoginResponse loggedInMember = memberService.loginMember(request);
@@ -34,15 +33,21 @@ public class MemberController {
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredMember);
     }
 
-
     @GetMapping("/view/{id}")
     public ResponseEntity<?> viewMember(@PathVariable(name = "id") Long id) {
         ViewResponse viewedMember = memberService.viewMember(id);
         return ResponseEntity.ok(viewedMember);
     }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateMember(@Valid @PathVariable(name="id")Long id, @RequestBody UpdateRequest request){
         UpdateResponse updatedMember = memberService.updateMember(id, request);
         return ResponseEntity.ok(updatedMember);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteMember(@Valid @PathVariable Long id){
+        memberService.deleteMember(id);
+        return ResponseEntity.ok("회원삭제 완료");
     }
 }

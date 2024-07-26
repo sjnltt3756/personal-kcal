@@ -1,7 +1,7 @@
 package com.personalkcal.dto.board;
 
 import com.personalkcal.domain.Board;
-import com.personalkcal.domain.Reply;
+import com.personalkcal.dto.reply.ReplyResponse.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,14 +49,16 @@ public class BoardResponse {
             String title,
             String content,
             String nickname,
-            List<Reply> replies
+            List<ReplyDto> replies
     ) {
         public ViewBoardResponse(Board board) {
             this(
                     board.getTitle(),
                     board.getContent(),
                     board.getMember().getNickname(),
-                    board.getReplies() != null ? board.getReplies() : new ArrayList<>()
+                    board.getReplies() != null ? board.getReplies().stream()
+                            .map(ReplyDto::new) // ReplyDto로 변환
+                            .toList() : new ArrayList<>()
             );
         }
     }

@@ -1,5 +1,6 @@
 package com.personalkcal.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class Reply {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String reply;
@@ -30,6 +32,9 @@ public class Reply {
         this.board = board;
         this.member = member;
     }
+
+
+
 
 
 }

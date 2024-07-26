@@ -29,9 +29,16 @@ public class ReplyResponse {
             this(
                     reply.getBoard().getTitle(),
                     reply.getBoard().getContent(),
-                    reply.getReply(),
-                    reply.getMember().getNickname()
-            );
+                    reply.getMember().getNickname(),
+                    reply.getReply()
+                    );
+        }
+    }
+
+    public record ReplyDto(String replyContent) {
+        public ReplyDto(Reply reply) {
+            this(reply.getReply());
         }
     }
 }
+

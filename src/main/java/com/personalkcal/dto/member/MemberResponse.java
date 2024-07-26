@@ -22,10 +22,11 @@ public class MemberResponse {
         }
     }
 
-    public record LoginResponse(String nickname){
+    public record LoginResponse(Long id, String nickname){
 
         public LoginResponse(Member member){
             this(
+                    member.getId(),
                     member.getNickname()
             );
         }

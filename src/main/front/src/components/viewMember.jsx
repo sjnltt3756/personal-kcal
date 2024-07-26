@@ -70,28 +70,28 @@ const ViewMember = () => {
       <h2>회원 정보</h2>
       {editing ? (
         <div>
-          <label>닉네임:</label>
+          <label>닉네임 : </label>
           <input
             type='text'
             value={updateDTO.nickname}
             onChange={(e) => setUpdateDTO({ ...updateDTO, nickname: e.target.value })}
           />
           <br />
-          <label>키:</label>
+          <label>키 : </label>
           <input
             type='text'
             value={updateDTO.height}
             onChange={(e) => setUpdateDTO({ ...updateDTO, height: e.target.value })}
           />
           <br />
-          <label>몸무게:</label>
+          <label>몸무게 : </label>
           <input
             type='text'
             value={updateDTO.weight}
             onChange={(e) => setUpdateDTO({ ...updateDTO, weight: e.target.value })}
           />
           <br />
-          <label>나이:</label>
+          <label>나이 : </label>
           <input
             type='text'
             value={updateDTO.age}

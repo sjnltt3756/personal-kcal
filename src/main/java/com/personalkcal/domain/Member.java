@@ -1,6 +1,9 @@
 package com.personalkcal.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 @Getter
@@ -13,12 +16,15 @@ public class Member {
     @Column(name = "MEMBER_ID")
     private Long id;
 
+    @NotBlank(message = "닉네임을 입력해주세요.")
     private String nickname;
-
+    @NotBlank(message = "성별을 입력해주세요.")
     private String gender;
-
+    @Positive
     private Double height;
+    @Positive
     private Double weight;
+    @Positive
     private Integer age;
 
     @Embedded

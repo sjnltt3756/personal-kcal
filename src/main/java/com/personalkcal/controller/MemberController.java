@@ -4,6 +4,7 @@ import com.personalkcal.dto.member.MemberRequest.*;
 import com.personalkcal.dto.member.MemberResponse.*;
 import com.personalkcal.service.implementation.KcalServiceImpl;
 import com.personalkcal.service.implementation.MemberServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +23,13 @@ public class MemberController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginMember(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> loginMember(@Valid @RequestBody LoginRequest request) {
         LoginResponse loggedInMember = memberService.loginMember(request);
         return ResponseEntity.ok(loggedInMember);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerMember(@RequestBody RegisterRequest request) {
+    public ResponseEntity<?> registerMember(@Valid @RequestBody RegisterRequest request) {
         RegisterResponse registeredMember = memberService.registerMember(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredMember);
     }
@@ -40,7 +41,7 @@ public class MemberController {
         return ResponseEntity.ok(viewedMember);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateMember(@PathVariable(name="id")Long id, @RequestBody UpdateRequest request){
+    public ResponseEntity<?> updateMember(@Valid @PathVariable(name="id")Long id, @RequestBody UpdateRequest request){
         UpdateResponse updatedMember = memberService.updateMember(id, request);
         return ResponseEntity.ok(updatedMember);
     }

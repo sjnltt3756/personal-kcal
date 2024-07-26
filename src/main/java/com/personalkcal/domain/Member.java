@@ -2,9 +2,11 @@ package com.personalkcal.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -30,6 +32,11 @@ public class Member {
     @Embedded
     private Kcal kcal;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Board> boards = new ArrayList<>();
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Reply> replies = new ArrayList<>();
+
     @Builder
     public Member(Long id, String nickname, String gender, double weight, double height, int age, Kcal kcal) {
         this.id=id;
@@ -41,8 +48,6 @@ public class Member {
         this.kcal = kcal;
     }
 
-//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    public List<Board> boards = new ArrayList<>();
 
 
 }

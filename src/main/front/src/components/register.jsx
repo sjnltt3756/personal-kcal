@@ -35,7 +35,8 @@ const Register = () => {
         </div>
         <div>
           <label>성별:</label>
-          <input type='gender' name='gender' value={registerDTO.gender} onChange={handleChange} />
+          <input type="radio" name="gender" value="남성" checked={registerDTO.gender === "남성"} onChange={handleChange} /> 남성
+          <input type="radio" name="gender" value="여성" checked={registerDTO.gender === "여성"} onChange={handleChange} /> 여성
         </div>
         <div>
           <label>키:</label>

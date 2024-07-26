@@ -25,6 +25,11 @@ public class ReplyServiceImpl implements ReplyService {
     private final BoardRepository boardRepository;
     private final ReplyRepository replyRepository;
 
+    /**
+     * 댓글 작성
+     * @param request
+     * @return
+     */
     @Override
     public WriteReplyResponse writeReply(WriteReplyRequest request){
         Board board = boardRepository.findById(request.boardId())
@@ -40,6 +45,12 @@ public class ReplyServiceImpl implements ReplyService {
         return new WriteReplyResponse(save);
     }
 
+    /**
+     * 댓글 수정
+     * @param id
+     * @param request
+     * @return
+     */
     @Override
     public UpdateReplyResponse updateReply(Long id, UpdateReplyRequest request){
         Reply reply = replyRepository.findById(id)

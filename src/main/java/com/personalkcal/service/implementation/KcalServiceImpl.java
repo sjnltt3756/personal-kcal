@@ -18,6 +18,11 @@ public class KcalServiceImpl implements KcalService {
 
     private static final DecimalFormat df = new DecimalFormat("0.0");
 
+    /**
+     * 칼로리 계산
+     * @param member
+     * @return
+     */
     public Member calculateKcalForMember(Member member) {
 
         Kcal kcal = new Kcal(
@@ -38,10 +43,6 @@ public class KcalServiceImpl implements KcalService {
                 .build();
     }
 
-
-    // 체형별 칼로리 계산(마름,보통,비만,근육)
-
-    // 체형별 탄단지 비율 계산
     // 다이어트
     private double dietKcal(Member member) {
         if (member.getGender().equals("남성")) {

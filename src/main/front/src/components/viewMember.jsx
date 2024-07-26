@@ -18,6 +18,7 @@ const ViewMember = () => {
     const fetchMemberData = async () => {
       try {
         const memberData = await viewMember(id); // API 호출하여 회원 정보 가져오기
+        console.log(memberData);
         setMember(memberData); // 회원 정보 설정
         setUpdateDTO({
           nickname: memberData.nickname,
@@ -108,12 +109,12 @@ const ViewMember = () => {
           <p>키: {member.height}cm</p>
           <p>몸무게: {member.weight}kg</p>
           <p>나이: {member.age}</p>
-          {member.kcalDto && (
+          {member.kcal && (
             <>
-              <p>다이어트 칼로리: {member.kcalDto.dietKcal}Kcal</p>
-              <p>유지 칼로리: {member.kcalDto.maintainKcal}Kcal</p>
-              <p>린매스업 칼로리: {member.kcalDto.massUpKcal}Kcal</p>
-              <p>벌크업 칼로리: {member.kcalDto.bulkUpKcal}Kcal</p>
+              <p>다이어트 칼로리: {member.kcal.dietKcal}Kcal</p>
+              <p>유지 칼로리: {member.kcal.maintainKcal}Kcal</p>
+              <p>린매스업 칼로리: {member.kcal.massUpKcal}Kcal</p>
+              <p>벌크업 칼로리: {member.kcal.bulkUpKcal}Kcal</p>
             </>
           )}
           <button onClick={handleEditClick}>수정</button>

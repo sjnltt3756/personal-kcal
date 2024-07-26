@@ -23,6 +23,11 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
 
+    /**
+     * 게시글 작성
+     * @param request
+     * @return
+     */
     @Override
     public WriteBoardResponse writeBoard(WriteBoardRequest request){
         Member member = memberRepository.findById(request.memberId())
@@ -39,11 +44,21 @@ public class BoardServiceImpl implements BoardService {
         return new WriteBoardResponse(save);
     }
 
+    /**
+     * 게시판 리스트
+     * @param pageable
+     * @return
+     */
     @Override
     public Page<BoardListResponse> boardList(Pageable pageable){
         return boardRepository.findAll(pageable).map(BoardListResponse::new);
     }
 
+    /**
+     * 게시글 상세보기
+     * @param boardId
+     * @return
+     */
     @Override
     public ViewBoardResponse viewBoard(Long boardId){
         Board board = boardRepository.findById(boardId)
@@ -51,6 +66,12 @@ public class BoardServiceImpl implements BoardService {
         return new ViewBoardResponse(board);
     }
 
+    /**
+     * 게시글 수정
+     * @param boardId
+     * @param request
+     * @return
+     */
     @Override
     public UpdateBoardResponse updateBoard(Long boardId, UpdateBoardRequest request){
         Board board = boardRepository.findById(boardId)
@@ -64,6 +85,10 @@ public class BoardServiceImpl implements BoardService {
         return new UpdateBoardResponse(update);
     }
 
+    /**
+     * 게시글 삭제
+     * @param id
+     */
     @Override
     public void deleteBoard(Long id){
         Board board = boardRepository.findById(id)

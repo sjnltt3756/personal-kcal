@@ -18,18 +18,18 @@ public class ReplyController {
     @PostMapping("/write")
     public ResponseEntity<?> writeReply(@RequestBody WriteReplyRequest request) {
         WriteReplyResponse response = replyService.writeReply(request);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateReply(@PathVariable Long id, @RequestBody UpdateReplyRequest request) {
         UpdateReplyResponse response = replyService.updateReply(id, request);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteReply(@PathVariable Long id) {
         replyService.deleteReply(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok("댓글 삭제 완료");
     }
 }

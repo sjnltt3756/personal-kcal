@@ -94,6 +94,15 @@ public class MemberServiceImpl implements MemberService {
         return new UpdateResponse(savedMember);
     }
 
+    /**
+     * 회원 삭제
+     * @param id
+     */
+    @Override
+    public void deleteMember(Long id){
+        Member member = findMemberById(id);
+        memberRepository.delete(member);
+    }
 
 
     private void validateExistNickname(String nickname) {

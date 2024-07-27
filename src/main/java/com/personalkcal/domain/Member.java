@@ -48,6 +48,11 @@ public class Member {
         this.kcal = kcal;
     }
 
-
+    public void updateMember(String nickname, Double height, Double weight, Integer age){
+        this.nickname = nickname;
+        this.height = height;
+        this.weight = weight;
+        this.age = age;
+    }
 
 }

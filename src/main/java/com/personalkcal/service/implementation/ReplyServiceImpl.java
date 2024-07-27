@@ -55,13 +55,8 @@ public class ReplyServiceImpl implements ReplyService {
     public UpdateReplyResponse updateReply(Long id, UpdateReplyRequest request){
         Reply reply = replyRepository.findById(id)
                 .orElseThrow(()-> new NotFoundReplyException("댓글이 존재하지 않습니다."));
-
-        Reply updateReply = Reply.builder()
-                .reply(request.reply())
-                .member(reply.getMember())
-                .board(reply.getBoard())
-                .build();
-        Reply update = replyRepository.save(updateReply);
+        reply.updateReply(request.reply());
+        Reply update = replyRepository.save(reply);
         return new UpdateReplyResponse(update);
     }
 

@@ -1,10 +1,8 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:8080";
+import axiosInstance from "./axiosInstance";
 
 export const loginMember = async (loginDTO) => {
   try {
-    const response = await axios.post(`${API_URL}/member/login`, loginDTO);
+    const response = await axiosInstance.post("/member/login", loginDTO);
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
@@ -14,7 +12,7 @@ export const loginMember = async (loginDTO) => {
 
 export const registerMember = async (registerDTO) => {
   try {
-    const response = await axios.post(`${API_URL}/member/register`, registerDTO);
+    const response = await axiosInstance.post("/member/register", registerDTO);
     return response.data;
   } catch (error) {
     console.error("Error registering:", error);
@@ -24,7 +22,7 @@ export const registerMember = async (registerDTO) => {
 
 export const viewMember = async (id) => {
   try {
-    const response = await axios.get(`${API_URL}/member/view/${id}`);
+    const response = await axiosInstance.get(`/member/view/${id}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching member:", error);
@@ -34,10 +32,10 @@ export const viewMember = async (id) => {
 
 export const updateMember = async (id, updateDTO) => {
   try {
-    const response = await axios.put(`${API_URL}/member/update/${id}`, updateDTO);
+    const response = await axiosInstance.put(`/member/update/${id}`, updateDTO);
     return response.data;
   } catch (error) {
-    console.error("Error fetching member:", error);
+    console.error("Error updating member:", error);
     throw error;
   }
 };

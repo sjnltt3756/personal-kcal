@@ -84,9 +84,10 @@ public class KcalServiceImpl implements KcalService {
     private Double basicKcal(Member member) {
         double womanKcal = 447.593 + (9.247 * member.getWeight()) + (3.098 * member.getHeight()) - (4.330 * member.getAge());
         double manKcal = 88.362 + (13.397 * member.getWeight()) + (4.799 * member.getHeight()) - (6.677 * member.getAge());
-
+        String woman = "여성";
         double kcal;
-        if ("여성".equals(member.getGender())) {
+
+        if (woman.equals(member.getGender())) {
             kcal = womanKcal;
         } else {
             kcal = manKcal;

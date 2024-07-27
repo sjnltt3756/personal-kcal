@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Name;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,7 +33,7 @@ public class MemberController {
     }
 
     @GetMapping("/view/{id}")
-    public ResponseEntity<?> viewMember(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<?> viewMember(@Valid @PathVariable(name = "id") Long id) {
         ViewResponse viewedMember = memberService.viewMember(id);
         return ResponseEntity.ok(viewedMember);
     }

@@ -76,12 +76,8 @@ public class BoardServiceImpl implements BoardService {
     public UpdateBoardResponse updateBoard(Long boardId, UpdateBoardRequest request){
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(()-> new NotFoundBoardException("게시글이 존재하지 않습니다."));
-        Board updateBoard = Board.builder()
-                    .title(request.title())
-                    .content(request.content())
-                    .member(board.getMember())
-                    .build();
-        Board update = boardRepository.save(updateBoard);
+        board.updateBoard(request.title(),request.content());
+        Board update = boardRepository.save(board);
         return new UpdateBoardResponse(update);
     }
 

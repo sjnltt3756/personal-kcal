@@ -2,6 +2,7 @@ package com.personalkcal.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,8 +20,10 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "제목을 입력해주세요.")
     private String title;
 
+    @NotBlank(message = "내용을 입력해주세요.")
     private String content;
 
     private Integer viewCount;
@@ -39,6 +42,11 @@ public class Board {
         this.viewCount = viewCount;
         this.member = member;
         this.replies = replies;
+    }
+
+    public void updateBoard(String title, String content){
+        this.title = title;
+        this.content = content;
     }
 
 }

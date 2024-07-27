@@ -28,9 +28,7 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
     public LoginResponse loginMember(LoginRequest request) {
-        String nickname = request.nickname();
-        findMemberByNickname(nickname);
-        Member member = memberRepository.findByNickname(nickname).get();
+        Member member = findMemberByNickname(request.nickname());
         return new LoginResponse(member);
     }
 
@@ -41,8 +39,7 @@ public class MemberServiceImpl implements MemberService {
      */
     @Override
     public RegisterResponse registerMember(RegisterRequest request) {
-        String nickname = request.nickname();
-        validateExistNickname(nickname);
+        validateExistNickname(request.nickname());
         Member member = Member.builder()
                 .nickname(request.nickname())
                 .gender(request.gender())
@@ -78,19 +75,9 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public UpdateResponse updateMember(Long id, UpdateRequest request) {
         Member member = findMemberById(id);
-        String nickname = request.nickname();
-        validateExistNickname(nickname);
-        Member updatedMember = Member.builder()
-                .id(member.getId())
-                .nickname(request.nickname() != null ? request.nickname() : member.getNickname())
-                .gender(member.getGender())
-                .height(request.height() != 0 ? request.height() : member.getHeight())
-                .weight(request.weight() != 0 ? request.weight() : member.getWeight())
-                .age(request.age() != 0 ? request.age() : member.getAge())
-                .build();
-
-        Member savedMember = memberRepository.save(updatedMember);
-
+        validateExistNickname(request.nickname());
+        member.updateMember(request.nickname(),request.height(),request.weight(),request.age());
+        Member savedMember = memberRepository.save(member);
         return new UpdateResponse(savedMember);
     }
 

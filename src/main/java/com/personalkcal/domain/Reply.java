@@ -2,6 +2,7 @@ package com.personalkcal.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +17,7 @@ public class Reply {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "댓글을 입력해주세요.")
     private String reply;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,6 +35,9 @@ public class Reply {
         this.member = member;
     }
 
+    public void updateReply(String reply){
+        this.reply = reply;
+    }
 
 
 

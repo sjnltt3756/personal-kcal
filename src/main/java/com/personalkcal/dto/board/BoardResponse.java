@@ -35,13 +35,15 @@ public class BoardResponse {
     }
     public record BoardListResponse(
             String title,
-            String nickname
+            String nickname,
+            Integer viewCount
     ) {
         public BoardListResponse(Board board) {
             this(
                     board.getTitle(),
-                    board.getMember().getNickname(
-                    ));
+                    board.getMember().getNickname(),
+                    board.getViewCount()
+            );
         }
     }
 

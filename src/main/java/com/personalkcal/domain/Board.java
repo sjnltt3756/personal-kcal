@@ -49,4 +49,7 @@ public class Board {
         this.content = content;
     }
 
+    public void addViewCount(Integer viewCount){
+        this.viewCount = viewCount + 1;
+    }
 }

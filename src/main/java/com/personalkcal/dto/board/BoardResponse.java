@@ -59,7 +59,7 @@ public class BoardResponse {
                     board.getContent(),
                     board.getMember().getNickname(),
                     board.getReplies() != null ? board.getReplies().stream()
-                            .map(ReplyDto::new) // ReplyDto로 변환
+                            .map(ReplyDto::new)
                             .toList() : new ArrayList<>()
             );
         }

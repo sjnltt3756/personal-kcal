@@ -1,4 +1,4 @@
-package com.personalkcal.service.implementation;
+package com.personalkcal.service.reply;
 
 import com.personalkcal.domain.Board;
 import com.personalkcal.domain.Member;
@@ -11,7 +11,6 @@ import com.personalkcal.exception.reply.NotFoundReplyException;
 import com.personalkcal.repository.BoardRepository;
 import com.personalkcal.repository.MemberRepository;
 import com.personalkcal.repository.ReplyRepository;
-import com.personalkcal.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

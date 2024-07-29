@@ -1,4 +1,4 @@
-package com.personalkcal.service.implementation;
+package com.personalkcal.service.board;
 
 import com.personalkcal.domain.Board;
 import com.personalkcal.domain.Member;
@@ -8,7 +8,6 @@ import com.personalkcal.exception.board.NotFoundBoardException;
 import com.personalkcal.exception.member.NotFoundMemberException;
 import com.personalkcal.repository.BoardRepository;
 import com.personalkcal.repository.MemberRepository;
-import com.personalkcal.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

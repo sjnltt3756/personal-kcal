@@ -1,4 +1,4 @@
-package com.personalkcal.service.implementation;
+package com.personalkcal.service.member;
 
 import com.personalkcal.domain.Member;
 import com.personalkcal.dto.member.MemberResponse.*;
@@ -6,8 +6,7 @@ import com.personalkcal.dto.member.MemberRequest.*;
 import com.personalkcal.exception.member.ExistMemberException;
 import com.personalkcal.exception.member.NotFoundMemberException;
 import com.personalkcal.repository.MemberRepository;
-import com.personalkcal.service.KcalService;
-import com.personalkcal.service.MemberService;
+import com.personalkcal.service.Kcal.KcalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

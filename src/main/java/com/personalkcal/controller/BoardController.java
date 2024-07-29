@@ -2,7 +2,7 @@ package com.personalkcal.controller;
 
 import com.personalkcal.dto.board.BoardRequest.*;
 import com.personalkcal.dto.board.BoardResponse.*;
-import com.personalkcal.service.BoardService;
+import com.personalkcal.service.board.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

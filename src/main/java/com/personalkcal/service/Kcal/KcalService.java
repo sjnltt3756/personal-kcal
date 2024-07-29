@@ -1,4 +1,4 @@
-package com.personalkcal.service;
+package com.personalkcal.service.Kcal;
 
 import com.personalkcal.domain.Member;
 

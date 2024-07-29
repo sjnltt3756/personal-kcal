@@ -2,8 +2,8 @@ package com.personalkcal.controller;
 
 import com.personalkcal.dto.member.MemberRequest.*;
 import com.personalkcal.dto.member.MemberResponse.*;
-import com.personalkcal.service.implementation.KcalServiceImpl;
-import com.personalkcal.service.implementation.MemberServiceImpl;
+import com.personalkcal.service.Kcal.KcalServiceImpl;
+import com.personalkcal.service.member.MemberServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

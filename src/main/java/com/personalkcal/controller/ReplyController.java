@@ -2,7 +2,7 @@ package com.personalkcal.controller;
 
 import com.personalkcal.dto.reply.ReplyRequest.*;
 import com.personalkcal.dto.reply.ReplyResponse.*;
-import com.personalkcal.service.implementation.ReplyServiceImpl;
+import com.personalkcal.service.reply.ReplyServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.personalkcal.service;
+package com.personalkcal.service.member;
 
 import com.personalkcal.dto.member.MemberRequest.*;
 import com.personalkcal.dto.member.MemberResponse.*;

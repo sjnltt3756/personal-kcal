@@ -7,7 +7,7 @@ import com.personalkcal.Dto.RegisterDTO;
 import com.personalkcal.domain.Member;
 import com.personalkcal.mapper.MemberMapper;
 import com.personalkcal.repository.MemberRepository;
-import com.personalkcal.service.implementation.MemberServiceImpl;
+import com.personalkcal.service.member.MemberServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

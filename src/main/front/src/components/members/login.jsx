@@ -1,17 +1,21 @@
+// src/components/Login.js
 import React, { useState } from "react";
 import { loginMember } from "../../api/fetchMember";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { memberState } from "../../recoil/atom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
 const Login = () => {
   const [loginDTO, setLoginDTO] = useState({ nickname: "" });
   const navigate = useNavigate();
+  const [loggedInMember, setLoggedInMember] = useRecoilState(memberState); // Recoil 상태 사용
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setLoginDTO({ ...loginDTO, [name]: value }); // name 속성을 이용하여 동적으로 상태 업데이트
+    setLoginDTO({ ...loginDTO, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -19,6 +23,8 @@ const Login = () => {
     try {
       const loggedInMember = await loginMember(loginDTO);
       console.log("Logged in member:", loggedInMember);
+      setLoggedInMember(loggedInMember); // Recoil 상태 업데이트
+      console.log("recoil", loggedInMember);
       navigate(`/member/view/${loggedInMember.id}`);
     } catch (error) {
       setError("Login failed. Please check your credentials.");
@@ -26,8 +32,9 @@ const Login = () => {
   };
 
   const goToMainPage = () => {
-    navigate("/"); // 메인 페이지로 이동
+    navigate("/");
   };
+
   return (
     <Container className='mt-5'>
       <Row className='justify-content-center'>

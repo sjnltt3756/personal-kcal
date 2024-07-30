@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { loginMember } from "../../api/fetchMember";
 import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col, Form, FormGroup, Label, Input, Button, Alert } from "reactstrap";
 
 const Login = () => {
   const [loginDTO, setLoginDTO] = useState({ nickname: "" });
@@ -23,18 +25,42 @@ const Login = () => {
     }
   };
 
+  const goToMainPage = () => {
+    navigate("/"); // 메인 페이지로 이동
+  };
   return (
-    <div>
-      <h2>로그인</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input type='text' name='nickname' value={loginDTO.nickname} onChange={handleChange} />{" "}
-        </div>
-        <button type='submit'>Login</button>
-      </form>
-      {error && <p>{error}</p>}
-    </div>
+    <Container className='mt-5'>
+      <Row className='justify-content-center'>
+        <Col md='6'>
+          <h2 className='text-center mb-4'>로그인</h2>
+          <Form onSubmit={handleSubmit}>
+            <FormGroup>
+              <Label for='nickname'>닉네임</Label>
+              <Input
+                type='text'
+                name='nickname'
+                id='nickname'
+                value={loginDTO.nickname}
+                onChange={handleChange}
+                required
+              />
+            </FormGroup>
+            <Button color='primary' type='submit' block>
+              로그인
+            </Button>
+            <br />
+            <Button color='secondary' onClick={goToMainPage} block>
+              메인 화면으로
+            </Button>
+          </Form>
+          {error && (
+            <Alert color='danger' className='mt-3'>
+              {error}
+            </Alert>
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

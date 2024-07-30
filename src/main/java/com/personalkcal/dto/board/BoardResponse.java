@@ -34,12 +34,14 @@ public class BoardResponse {
         }
     }
     public record BoardListResponse(
+            Long id,
             String title,
             String nickname,
             Integer viewCount
     ) {
         public BoardListResponse(Board board) {
             this(
+                    board.getId(),
                     board.getTitle(),
                     board.getMember().getNickname(),
                     board.getViewCount()
@@ -48,6 +50,7 @@ public class BoardResponse {
     }
 
     public record ViewBoardResponse(
+            Long id,
             String title,
             String content,
             String nickname,
@@ -55,6 +58,7 @@ public class BoardResponse {
     ) {
         public ViewBoardResponse(Board board) {
             this(
+                    board.getId(),
                     board.getTitle(),
                     board.getContent(),
                     board.getMember().getNickname(),

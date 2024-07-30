@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.personalkcal.configuration.ChatGPTConfig;
 import com.personalkcal.dto.chatgpt.ChatCompletionDto;
 import com.personalkcal.dto.chatgpt.CompletionDto;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -22,13 +23,12 @@ import java.util.Map;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class ChatGPTServiceImpl implements ChatGPTService{
 
     private final ChatGPTConfig chatGPTConfig;
 
-    public ChatGPTServiceImpl(ChatGPTConfig chatGPTConfig) {
-        this.chatGPTConfig = chatGPTConfig;
-    }
+
 
     @Value("${openai.url.model}")
     private String modelUrl;

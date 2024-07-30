@@ -1,0 +1,8 @@
+.list-group-container {
+  max-width: 400px; /* 원하는 최대 가로 크기 설정 */
+  margin: auto; /* 중앙 정렬 */
+}
+
+.text-center {
+  text-align: center;
+}

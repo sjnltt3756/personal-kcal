@@ -1,0 +1,9 @@
+.form-container {
+  max-width: 500px;
+  margin: auto;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875em;
+}

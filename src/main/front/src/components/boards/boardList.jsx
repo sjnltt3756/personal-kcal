@@ -28,12 +28,13 @@ const BoardList = () => {
     <Container>
       <Row>
         <Col>
-          <h1 className='my-4'>Board List</h1>
+          <h1 className='my-4'>게시판</h1>
           <Table striped>
             <thead>
               <tr>
                 <th>제목</th>
                 <th>작성자</th>
+                <th>조회수</th>
                 <th>삭제</th>
               </tr>
             </thead>
@@ -41,9 +42,10 @@ const BoardList = () => {
               {boards.map((board) => (
                 <tr key={board.id}>
                   <td>
-                    <Link to={`/boardView/${board.id}`}>{board.title}</Link>
+                    <Link to={`/board/view/${board.id}`}>{board.title}</Link>
                   </td>
                   <td>{board.nickname}</td>
+                  <td>{board.viewCount}</td>
                   <td>
                     <Button color='danger' onClick={() => handleDeleteBoard(board.id)}>
                       Delete
@@ -53,15 +55,15 @@ const BoardList = () => {
               ))}
             </tbody>
           </Table>
-          <Link to='/boardWrite'>
+          <Link to='/board/write'>
             <Button color='primary' className='mt-4'>
               게시글 작성
             </Button>
             <br />
-            <Button color='secondary' className='mt-4' onClick={goToMainPage}>
-              메인 화면으로
-            </Button>
           </Link>
+          <Button color='secondary' className='mt-4' onClick={goToMainPage}>
+            메인 화면으로
+          </Button>
         </Col>
       </Row>
     </Container>

@@ -1,5 +1,6 @@
 package com.personalkcal.configuration;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,11 @@ public class ChatGPTConfig {
 
     @Value("${openai.api.key}")
     private String secretKey;
+
+    @PostConstruct
+    public void init() {
+        System.out.println("OpenAI API Key: " + secretKey);
+    }
 
     @Bean
     public RestTemplate restTemplate() {

@@ -9,3 +9,38 @@
 
 ## 사용기술
 java17,Spring boot 3.3.1, JPA, H2 database, React JS
+
+## 주요 이슈
+
+### 같은 객체를 2번 반환해버리는 이슈 발생
+org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned
+
+    칼로리 계산 한 후에 멤버객체를 생성해서 반환하고
+    
+    멤버서비스의 viewMember 서비스에서 반환된 멤버객체를 받아 응답하는 코드인데 한번 더 저장해버리는 이슈가 발생
+   
+    멤버서비스의 viewMember 서비스에서 반환된 멤버객체를 받아 응답하는 코드로 수정
+
+### 게시판 순환참조
+    댓글을 달고 게시판을 상세보기를 보게되면 순환참조가 발생
+
+    - 해결방안
+        - @JsonBackReference와 @JsonManagedReferunce
+            @JsonBackReferen
+                연관관계의 주인 Entity에 설정
+                직렬화가 되지 않도록 수행
+            @JsonManagedReferunce
+                연관관계의 주인 반대 Entity에 설정
+                직렬화 정상 수행
+        - dto 사용
+            기존에 entity로 reply을 받아서 그대로 응답하여 순환참조 발생을 dto로 받아 응답하는 방식으로 변경
+            
+        - 최종적으로 Dto 사용
+        - 이유
+            Entity 클래스를 Dto 클래스로 변환하는 것이 API 응답 형식으로 사용하는 방식으로써 좋다
+            Dto 클래스는 필요한 필드만을 가지고 있으므로, 불필요한 데이터 노출이 없다.
+            API 응답 형식 변경에 따른 수정도 용이하며, 데이터 변환 오류도 방지할 수 있다.
+            근본적으로 사전에 순환참조를 예방할 수 있는 방법이기 때문에
+
+## ERD
+![image](https://github.com/user-attachments/assets/606090c1-cd85-4596-b061-3e3c9aff88e9)

@@ -34,6 +34,7 @@ public class MemberResponse {
 
     public record UpdateResponse(
             String nickname,
+            String gender,
             Double height,
             Double weight,
             Integer age
@@ -41,6 +42,7 @@ public class MemberResponse {
         public UpdateResponse(Member member) {
             this(
                     member.getNickname(),
+                    member.getGender(),
                     member.getHeight(),
                     member.getWeight(),
                     member.getAge()

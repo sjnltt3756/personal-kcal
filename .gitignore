@@ -5,8 +5,8 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-## chatGPT config
-ChatGPTConfig.java
+## application-secret
+application-secret.yml
 
 ### STS ###
 .apt_generated

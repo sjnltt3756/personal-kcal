@@ -42,5 +42,9 @@ java17,Spring boot 3.3.1, JPA, H2 database, React JS
             API 응답 형식 변경에 따른 수정도 용이하며, 데이터 변환 오류도 방지할 수 있다.
             근본적으로 사전에 순환참조를 예방할 수 있는 방법이기 때문에
 <hr>
+
 ## ERD
-![image](https://github.com/user-attachments/assets/606090c1-cd85-4596-b061-3e3c9aff88e9)
+
+![personal-kcal_erd](https://github.com/user-attachments/assets/32abc0d9-f94c-4391-8c45-f80c39dda321)
+
+

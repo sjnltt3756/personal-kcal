@@ -13,7 +13,7 @@ java17,Spring boot 3.3.1, JPA, H2 database, React JS
 ## 주요 이슈
 
 ### 같은 객체를 2번 반환해버리는 이슈 발생
-org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned
+> org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 results were returned
 
     칼로리 계산 한 후에 멤버객체를 생성해서 반환하고
     
@@ -41,6 +41,6 @@ org.hibernate.NonUniqueResultException: Query did not return a unique result: 2 
             Dto 클래스는 필요한 필드만을 가지고 있으므로, 불필요한 데이터 노출이 없다.
             API 응답 형식 변경에 따른 수정도 용이하며, 데이터 변환 오류도 방지할 수 있다.
             근본적으로 사전에 순환참조를 예방할 수 있는 방법이기 때문에
-
+<hr>
 ## ERD
 ![image](https://github.com/user-attachments/assets/606090c1-cd85-4596-b061-3e3c9aff88e9)

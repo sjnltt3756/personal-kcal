@@ -18,6 +18,7 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "BOARD_ID")
     private Long id;
 
     @NotBlank(message = "제목을 입력해주세요.")

@@ -15,6 +15,7 @@ public class Reply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "REPLY_ID")
     private Long id;
 
     @NotBlank(message = "댓글을 입력해주세요.")

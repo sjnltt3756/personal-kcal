@@ -8,7 +8,7 @@
 2024.07.06~
 
 ## 사용기술
-java17,Spring boot 3.3.1, JPA, H2 database, React JS
+java17,Spring boot 3.3.1, JPA, H2 database -> MYSQL , React JS
 
 ## 주요 이슈
 

@@ -1,4 +1,4 @@
-package com.personalkcal.controller;
+package com.personalkcal.controller.member;
 
 import com.personalkcal.dto.member.MemberRequest.*;
 import com.personalkcal.dto.member.MemberResponse.*;

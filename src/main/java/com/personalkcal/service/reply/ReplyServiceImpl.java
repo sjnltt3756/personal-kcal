@@ -1,16 +1,16 @@
 package com.personalkcal.service.reply;
 
-import com.personalkcal.domain.Board;
-import com.personalkcal.domain.Member;
-import com.personalkcal.domain.Reply;
+import com.personalkcal.domain.board.Board;
+import com.personalkcal.domain.member.Member;
+import com.personalkcal.domain.reply.Reply;
 import com.personalkcal.dto.reply.ReplyRequest.*;
 import com.personalkcal.dto.reply.ReplyResponse.*;
 import com.personalkcal.exception.board.NotFoundBoardException;
 import com.personalkcal.exception.member.NotFoundMemberException;
 import com.personalkcal.exception.reply.NotFoundReplyException;
-import com.personalkcal.repository.BoardRepository;
-import com.personalkcal.repository.MemberRepository;
-import com.personalkcal.repository.ReplyRepository;
+import com.personalkcal.repository.board.BoardRepository;
+import com.personalkcal.repository.member.MemberRepository;
+import com.personalkcal.repository.reply.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

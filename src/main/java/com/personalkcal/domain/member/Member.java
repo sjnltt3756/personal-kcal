@@ -1,5 +1,8 @@
-package com.personalkcal.domain;
+package com.personalkcal.domain.member;
 
+import com.personalkcal.domain.reply.Reply;
+import com.personalkcal.domain.board.Board;
+import com.personalkcal.domain.kcal.Kcal;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;

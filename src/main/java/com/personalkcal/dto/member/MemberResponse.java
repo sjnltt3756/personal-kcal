@@ -1,7 +1,7 @@
 package com.personalkcal.dto.member;
 
-import com.personalkcal.domain.Kcal;
-import com.personalkcal.domain.Member;
+import com.personalkcal.domain.kcal.Kcal;
+import com.personalkcal.domain.member.Member;
 
 public class MemberResponse {
     public record RegisterResponse(

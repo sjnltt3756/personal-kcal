@@ -1,4 +1,4 @@
-package com.personalkcal.controller;
+package com.personalkcal.controller.reply;
 
 import com.personalkcal.dto.reply.ReplyRequest.*;
 import com.personalkcal.dto.reply.ReplyResponse.*;

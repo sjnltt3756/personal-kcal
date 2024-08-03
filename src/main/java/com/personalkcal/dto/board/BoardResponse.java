@@ -1,6 +1,6 @@
 package com.personalkcal.dto.board;
 
-import com.personalkcal.domain.Board;
+import com.personalkcal.domain.board.Board;
 import com.personalkcal.dto.reply.ReplyResponse.*;
 
 import java.util.ArrayList;

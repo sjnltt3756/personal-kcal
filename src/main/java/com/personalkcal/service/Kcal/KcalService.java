@@ -1,6 +1,6 @@
 package com.personalkcal.service.Kcal;
 
-import com.personalkcal.domain.Member;
+import com.personalkcal.domain.member.Member;
 
 
 public interface KcalService {

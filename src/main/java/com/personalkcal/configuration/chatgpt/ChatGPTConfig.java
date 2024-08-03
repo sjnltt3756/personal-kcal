@@ -1,4 +1,4 @@
-package com.personalkcal.configuration;
+package com.personalkcal.configuration.chatgpt;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
-package com.personalkcal.repository;
+package com.personalkcal.repository.member;
 
-import com.personalkcal.domain.Member;
+import com.personalkcal.domain.member.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

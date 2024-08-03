@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.personalkcal.configuration.ChatGPTConfig;
+import com.personalkcal.configuration.chatgpt.ChatGPTConfig;
 import com.personalkcal.dto.chatgpt.ChatCompletionDto;
 import com.personalkcal.dto.chatgpt.CompletionDto;
 import lombok.RequiredArgsConstructor;

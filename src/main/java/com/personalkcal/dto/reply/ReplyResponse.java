@@ -1,6 +1,6 @@
 package com.personalkcal.dto.reply;
 
-import com.personalkcal.domain.Reply;
+import com.personalkcal.domain.reply.Reply;
 
 public class ReplyResponse {
     public record WriteReplyResponse(

@@ -1,4 +1,4 @@
-package com.personalkcal.domain;
+package com.personalkcal.domain.kcal;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;

@@ -1,13 +1,13 @@
 package com.personalkcal.service.board;
 
-import com.personalkcal.domain.Board;
-import com.personalkcal.domain.Member;
+import com.personalkcal.domain.board.Board;
+import com.personalkcal.domain.member.Member;
 import com.personalkcal.dto.board.BoardRequest.*;
 import com.personalkcal.dto.board.BoardResponse.*;
 import com.personalkcal.exception.board.NotFoundBoardException;
 import com.personalkcal.exception.member.NotFoundMemberException;
-import com.personalkcal.repository.BoardRepository;
-import com.personalkcal.repository.MemberRepository;
+import com.personalkcal.repository.board.BoardRepository;
+import com.personalkcal.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,8 +1,8 @@
 package com.personalkcal.service.Kcal;
 
 
-import com.personalkcal.domain.Kcal;
-import com.personalkcal.domain.Member;
+import com.personalkcal.domain.kcal.Kcal;
+import com.personalkcal.domain.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

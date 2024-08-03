@@ -1,6 +1,7 @@
-package com.personalkcal.domain;
+package com.personalkcal.domain.board;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.personalkcal.domain.member.Member;
+import com.personalkcal.domain.reply.Reply;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;

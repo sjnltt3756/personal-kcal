@@ -1,4 +1,4 @@
-package com.personalkcal.controller;
+package com.personalkcal.controller.board;
 
 import com.personalkcal.dto.board.BoardRequest.*;
 import com.personalkcal.dto.board.BoardResponse.*;

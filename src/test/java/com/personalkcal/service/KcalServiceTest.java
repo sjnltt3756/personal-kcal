@@ -1,7 +1,7 @@
 //package com.personalkcal.service;
 //
-//import com.personalkcal.domain.Kcal;
-//import com.personalkcal.domain.Member;
+//import com.personalkcal.domain.kcal.Kcal;
+//import com.personalkcal.domain.member.Member;
 //import com.personalkcal.service.implementation.Kcal.KcalServiceImpl;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;

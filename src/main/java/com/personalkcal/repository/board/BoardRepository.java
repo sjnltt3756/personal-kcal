@@ -1,6 +1,6 @@
-package com.personalkcal.repository;
+package com.personalkcal.repository.board;
 
-import com.personalkcal.domain.Board;
+import com.personalkcal.domain.board.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BoardRepository extends JpaRepository<Board,Long> {

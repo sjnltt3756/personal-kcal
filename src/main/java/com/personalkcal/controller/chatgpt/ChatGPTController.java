@@ -1,4 +1,4 @@
-package com.personalkcal.controller;
+package com.personalkcal.controller.chatgpt;
 
 import com.personalkcal.dto.chatgpt.ChatCompletionDto;
 import com.personalkcal.dto.chatgpt.CompletionDto;

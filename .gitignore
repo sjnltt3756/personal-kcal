@@ -6,7 +6,7 @@ build/
 !**/src/test/**/build/
 
 ## application-secret
-application-secret.yml
+##application-secret.yml
 ## MAC
 .DS_Store
 ### STS ###

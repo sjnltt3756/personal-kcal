@@ -65,7 +65,7 @@ public class ChatGPTServiceImpl implements ChatGPTService{
         try {
             // [STEP3] Jackson을 기반으로 응답값을 가져옵니다.
             ObjectMapper om = new ObjectMapper();
-            Map<String, Object> data = om.readValue(response.getBody(), new TypeReference<>() {
+            Map<String, Object> data = om.readValue(response.getBody(), new TypeReference<Map<String,Object>>() {
             });
 
             // [STEP4] 응답 값을 결과값에 넣고 출력을 해봅니다.

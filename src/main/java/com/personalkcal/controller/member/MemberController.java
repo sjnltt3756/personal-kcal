@@ -32,19 +32,19 @@ public class MemberController {
     }
 
     @GetMapping("/view/{id}")
-    public ResponseEntity<?> viewMember(@Valid @PathVariable(name = "id") Long id) {
+    public ResponseEntity<?> viewMember(@PathVariable(name = "id") Long id) {
         ViewResponse viewedMember = memberService.viewMember(id);
         return ResponseEntity.ok(viewedMember);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateMember(@Valid @PathVariable(name="id")Long id, @RequestBody UpdateRequest request){
+    public ResponseEntity<?> updateMember(@PathVariable(name="id")Long id, @RequestBody UpdateRequest request){
         UpdateResponse updatedMember = memberService.updateMember(id, request);
         return ResponseEntity.ok(updatedMember);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteMember(@Valid @PathVariable Long id){
+    public ResponseEntity<?> deleteMember(@PathVariable Long id){
         memberService.deleteMember(id);
         return ResponseEntity.ok("회원삭제 완료");
     }

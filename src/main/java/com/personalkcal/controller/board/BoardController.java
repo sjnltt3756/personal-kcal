@@ -27,28 +27,28 @@ public class BoardController {
 
     // 게시글 목록 조회
     @GetMapping("/list")
-    public ResponseEntity<?> boardList(@Valid Pageable pageable) {
+    public ResponseEntity<?> boardList(Pageable pageable) {
         Page<BoardListResponse> response = boardService.boardList(pageable);
         return ResponseEntity.ok(response);
     }
 
     // 특정 게시글 조회
     @GetMapping("/view/{boardId}")
-    public ResponseEntity<?> viewBoard(@Valid @PathVariable Long boardId) {
+    public ResponseEntity<?> viewBoard(@PathVariable Long boardId) {
         ViewBoardResponse response = boardService.viewBoard(boardId);
         return ResponseEntity.ok(response);
     }
 
     // 게시글 수정
     @PutMapping("/update/{boardId}")
-    public ResponseEntity<?> updateBoard(@Valid @PathVariable Long boardId, @RequestBody UpdateBoardRequest request) {
+    public ResponseEntity<?> updateBoard(@PathVariable Long boardId,@Valid @RequestBody UpdateBoardRequest request) {
         UpdateBoardResponse response = boardService.updateBoard(boardId, request);
         return ResponseEntity.ok(response);
     }
 
     // 게시글 삭제
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteBoard(@Valid @PathVariable Long id) {
+    public ResponseEntity<?> deleteBoard(@PathVariable Long id) {
         boardService.deleteBoard(id);
         return ResponseEntity.ok("게시글 삭제 완료");
     }

@@ -23,13 +23,13 @@ public class ReplyController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateReply(@Valid @PathVariable Long id, @RequestBody UpdateReplyRequest request) {
+    public ResponseEntity<?> updateReply(@PathVariable Long id,@Valid @RequestBody UpdateReplyRequest request) {
         UpdateReplyResponse response = replyService.updateReply(id, request);
         return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteReply(@Valid @PathVariable Long id) {
+    public ResponseEntity<?> deleteReply(@PathVariable Long id) {
         replyService.deleteReply(id);
         return ResponseEntity.ok("댓글 삭제 완료");
     }

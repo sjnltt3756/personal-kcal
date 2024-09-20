@@ -20,35 +20,35 @@ public class BoardController {
 
     // 게시글 작성
     @PostMapping("/write")
-    public ResponseEntity<?> createBoard(@Valid @RequestBody WriteBoardRequest request) {
+    public ResponseEntity<WriteBoardResponse> createBoard(@Valid @RequestBody WriteBoardRequest request) {
         WriteBoardResponse response = boardService.writeBoard(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     // 게시글 목록 조회
     @GetMapping("/list")
-    public ResponseEntity<?> boardList(Pageable pageable) {
+    public ResponseEntity<Page<BoardListResponse>> boardList(Pageable pageable) {
         Page<BoardListResponse> response = boardService.boardList(pageable);
         return ResponseEntity.ok(response);
     }
 
     // 특정 게시글 조회
     @GetMapping("/view/{boardId}")
-    public ResponseEntity<?> viewBoard(@PathVariable Long boardId) {
+    public ResponseEntity<ViewBoardResponse> viewBoard(@PathVariable Long boardId) {
         ViewBoardResponse response = boardService.viewBoard(boardId);
         return ResponseEntity.ok(response);
     }
 
     // 게시글 수정
     @PutMapping("/update/{boardId}")
-    public ResponseEntity<?> updateBoard(@PathVariable Long boardId,@Valid @RequestBody UpdateBoardRequest request) {
+    public ResponseEntity<UpdateBoardResponse> updateBoard(@PathVariable Long boardId,@Valid @RequestBody UpdateBoardRequest request) {
         UpdateBoardResponse response = boardService.updateBoard(boardId, request);
         return ResponseEntity.ok(response);
     }
 
     // 게시글 삭제
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteBoard(@PathVariable Long id) {
+    public ResponseEntity<String> deleteBoard(@PathVariable Long id) {
         boardService.deleteBoard(id);
         return ResponseEntity.ok("게시글 삭제 완료");
     }

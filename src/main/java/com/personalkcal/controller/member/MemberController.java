@@ -20,31 +20,31 @@ public class MemberController {
     private final KcalServiceImpl kcalService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginMember(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<LoginResponse> loginMember(@Valid @RequestBody LoginRequest request) {
         LoginResponse loggedInMember = memberService.loginMember(request);
         return ResponseEntity.ok(loggedInMember);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerMember(@Valid @RequestBody RegisterRequest request) {
+    public ResponseEntity<RegisterResponse> registerMember(@Valid @RequestBody RegisterRequest request) {
         RegisterResponse registeredMember = memberService.registerMember(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredMember);
     }
 
     @GetMapping("/view/{id}")
-    public ResponseEntity<?> viewMember(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<ViewResponse> viewMember(@PathVariable(name = "id") Long id) {
         ViewResponse viewedMember = memberService.viewMember(id);
         return ResponseEntity.ok(viewedMember);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateMember(@PathVariable(name="id")Long id, @RequestBody UpdateRequest request){
+    public ResponseEntity<UpdateResponse> updateMember(@PathVariable(name="id")Long id, @RequestBody UpdateRequest request){
         UpdateResponse updatedMember = memberService.updateMember(id, request);
         return ResponseEntity.ok(updatedMember);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteMember(@PathVariable Long id){
+    public ResponseEntity<String> deleteMember(@PathVariable Long id){
         memberService.deleteMember(id);
         return ResponseEntity.ok("회원삭제 완료");
     }

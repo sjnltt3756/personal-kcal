@@ -74,7 +74,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public UpdateResponse updateMember(Long id, UpdateRequest request) {
         Member member = findMemberById(id);
-        validateExistNickname(request.nickname());
+        //validateExistNickname(request.nickname());
         member.updateMember(request.nickname(),request.height(),request.weight(),request.age());
         Member savedMember = memberRepository.save(member);
         return new UpdateResponse(savedMember);

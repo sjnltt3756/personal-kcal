@@ -21,5 +21,4 @@ spring:
         format_sql: true
 
 
-#  config:
-#    import: application-secret.yml
+
